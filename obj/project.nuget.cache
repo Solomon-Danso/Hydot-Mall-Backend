@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ryZNALLmDEP2lWZIFp/QqCx9pkI2GfonvHK12h33cV5bHqyM76HBcCN6ArlKwFEiOSw8P1seIVX5V6D7VZDJPw==",
+  "dgSpecHash": "4QXxwRHxa84Nw76taoeMqD8FRotBH0rJVVb2VPO4JNEYZUhf8IIXnXJecpTy4+T76w2dEUAvmm7lyiqE1p0oHQ==",
   "success": true,
   "projectFilePath": "/Users/glydetek/Desktop/Client/Hydot-Mall-Backend/Hydot Mall Backend v1.csproj",
   "expectedPackageFiles": [
     "/Users/glydetek/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/glydetek/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
-    "/Users/glydetek/.nuget/packages/bcrypt.net-core/1.6.0/bcrypt.net-core.1.6.0.nupkg.sha512",
     "/Users/glydetek/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/glydetek/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/glydetek/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.9/microsoft.aspnetcore.cryptography.internal.7.0.9.nupkg.sha512",
