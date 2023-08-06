@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hydot Mall Backend v1", "Hydot Mall Backend v1.csproj", "{03E776F5-A5FE-4E5C-9AF4-3AA555DEB99D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03E776F5-A5FE-4E5C-9AF4-3AA555DEB99D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E776F5-A5FE-4E5C-9AF4-3AA555DEB99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E776F5-A5FE-4E5C-9AF4-3AA555DEB99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E776F5-A5FE-4E5C-9AF4-3AA555DEB99D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF790DE5-668E-4E8E-9889-E717CF6F7AC6}
+	EndGlobalSection
+EndGlobal
