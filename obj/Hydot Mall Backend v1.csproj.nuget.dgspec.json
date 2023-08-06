@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/glydetek/Desktop/Hydot Mall Backend v1/Hydot Mall Backend v1.csproj": {}
+    "/Users/glydetek/Desktop/Client/Hydot-Mall-Backend/Hydot Mall Backend v1.csproj": {}
   },
   "projects": {
-    "/Users/glydetek/Desktop/Hydot Mall Backend v1/Hydot Mall Backend v1.csproj": {
+    "/Users/glydetek/Desktop/Client/Hydot-Mall-Backend/Hydot Mall Backend v1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/glydetek/Desktop/Hydot Mall Backend v1/Hydot Mall Backend v1.csproj",
+        "projectUniqueName": "/Users/glydetek/Desktop/Client/Hydot-Mall-Backend/Hydot Mall Backend v1.csproj",
         "projectName": "Hydot Mall Backend v1",
-        "projectPath": "/Users/glydetek/Desktop/Hydot Mall Backend v1/Hydot Mall Backend v1.csproj",
+        "projectPath": "/Users/glydetek/Desktop/Client/Hydot-Mall-Backend/Hydot Mall Backend v1.csproj",
         "packagesPath": "/Users/glydetek/.nuget/packages/",
-        "outputPath": "/Users/glydetek/Desktop/Hydot Mall Backend v1/obj/",
+        "outputPath": "/Users/glydetek/Desktop/Client/Hydot-Mall-Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/glydetek/.nuget/NuGet/NuGet.Config"
@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[7.0.7, )"
             },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.9, )"
@@ -63,6 +67,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.9, )"
             },
