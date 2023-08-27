@@ -16,7 +16,7 @@ namespace Hydot_Mall_Backend_v1.Models
         public double? Price { get; set; }
         public double? Quantity { get; set; }
         public double? Rating { get; set; }
-        public string? DateAddded { get; set; }
+        public string? DateAdded { get; set; }
         public string? AddedByUserId { get; set; }
         public string? AddedByUserName  { get; set; }
         public string? DateModified { get; set; }
@@ -24,6 +24,23 @@ namespace Hydot_Mall_Backend_v1.Models
         public string? ModifiedByUserName { get; set; }
 
     }
+
+public class DeliveryAddress{
+    public int Id { get; set;}
+    public string? Location { get; set;}
+    public string? GpsAddress {get; set;}
+    public string? UserId{get; set;}
+
+}
+public class BillingCard{
+    public int Id { get; set;}
+    public string? UserId { get; set; }
+    public string? OrderId { get; set; }
+    public string? BillingId { get; set; } 
+    public string? Location { get; set;}
+    public string? GpsAddress {get; set;}
+
+}
 
     public class ProductDto
     {
@@ -79,7 +96,7 @@ namespace Hydot_Mall_Backend_v1.Models
         public string? UserName { get; set; }
         public string? UserEmail { get; set; }
         public string? UserPhone { get; set; }
-        public string? DateAdded { get; set; }
+        public string? DateOrdered { get; set; }
 
     }
 

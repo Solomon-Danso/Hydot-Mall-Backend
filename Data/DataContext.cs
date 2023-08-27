@@ -15,7 +15,7 @@ namespace Hydot_Mall_Backend_v1.Data
 //Database Connection String
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
-base.OnConfiguring(optionsBuilder); optionsBuilder.UseSqlServer("Server=localhost,1433;Database=HDSS;User=sa;Password=HydotTech;TrustServerCertificate=true;");
+base.OnConfiguring(optionsBuilder); optionsBuilder.UseSqlServer("Server=localhost,1433;Database=HydotMall;User=sa;Password=HydotTech;TrustServerCertificate=true;");
 }  
 
 public DbSet< CustomerAccount> CustomerAccounts { get; set; }
@@ -32,8 +32,9 @@ public DbSet<Accounting> Accountings {get; set; }
 public DbSet<DeliveryManager> DeliveryManagers { get; set;}
 public DbSet<Security> Securities { get; set; }
 public DbSet<Delivery> Deliveries { get; set; }
-
-
+public DbSet<ProductManager> ProductManagers { get; set; }
+public DbSet<BillingCard> BillingCards{ get; set; }
+public DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
 
 
 
