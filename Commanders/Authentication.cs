@@ -15,5 +15,7 @@ namespace Hydot_Mall_Backend_v1.Commanders
         public Authentication(DataContext ctx){
             context = ctx;
         }
+
+        
     }
 }

@@ -25,14 +25,13 @@ public DbSet<Cart> Carts { get; set; }
 public DbSet<OrderList> OrderLists { get; set; }
 public DbSet<OptionalSaveThisBillingAddress> OptionalSaveThisBillingAddresses{ get; set; }
 public DbSet<Master> Masters{ get; set; }
-public DbSet<Billing> Billings{get; set; }
 public DbSet<Warehouse> Warehouses{get; set; }
 public DbSet<Quality> Qualities { get; set; }
 public DbSet<Accounting> Accountings {get; set; }
 public DbSet<DeliveryManager> DeliveryManagers { get; set;}
 public DbSet<Security> Securities { get; set; }
 public DbSet<Delivery> Deliveries { get; set; }
-public DbSet<ProductManager> ProductManagers { get; set; }
+public DbSet<RoleTable> RoleTables { get; set; }
 public DbSet<BillingCard> BillingCards{ get; set; }
 public DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
 

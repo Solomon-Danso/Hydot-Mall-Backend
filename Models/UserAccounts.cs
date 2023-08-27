@@ -53,6 +53,18 @@ namespace Hydot_Mall_Backend_v1.Models
         public string? Role {get; set;}
         
 
-
     }
+
+ public class RoleTable{
+    public int Id { get; set; }
+    public string? ManagerId { get; set; }
+    public string? ManagerName { get; set; }
+    public string? PhoneNumber { get; set; }
+    public string? Email { get; set; }
+    public string? Role {get;set;}
+
+   }
+
+
+
 }

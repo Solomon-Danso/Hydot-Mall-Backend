@@ -18,7 +18,7 @@ namespace Hydot_Mall_Backend_v1.Commanders
             context = ctx;
         }
 
-        
+        Constants constant = new Constants();
 
 [HttpPost("addProduct")]
         public async Task<IActionResult> AddProducts([FromForm]ProductDto request, string ManagerId){
@@ -50,7 +50,7 @@ namespace Hydot_Mall_Backend_v1.Commanders
         await request.ProductImage.CopyToAsync(stream);
     }
 
- var manager = context.ProductManagers.FirstOrDefault(m=>m.ManagerId==ManagerId);
+ var manager = context.RoleTables.FirstOrDefault(m=>m.ManagerId==ManagerId && m.Role ==constant.Inventory );
  if (manager == null){
     return BadRequest("You dont have the permisiion to post any product ");
  }
@@ -110,7 +110,7 @@ namespace Hydot_Mall_Backend_v1.Commanders
         await request.ProductImage.CopyToAsync(stream);
     }
 
- var manager = context.ProductManagers.FirstOrDefault(m=>m.ManagerId==ManagerId);
+ var manager = context.RoleTables.FirstOrDefault(m=>m.ManagerId==ManagerId && m.Role ==constant.Inventory);
  if (manager == null){
     return BadRequest("You dont have the permisiion to post any product ");
  }
@@ -247,7 +247,8 @@ UserId = regUser.UserId,
 OrderId = OrderId,
 BillingId = IDGenerator(),
 Location = request.Location,
-GpsAddress = request.GpsAddress
+GpsAddress = request.GpsAddress,
+BillingStage = constant.Completed
 
 };
 context.BillingCards.Add(BillCard);
@@ -255,6 +256,21 @@ context.BillingCards.Add(BillCard);
 foreach(var item in carts){
 context.Carts.Remove(item);
 }
+
+var ware = new Warehouse{
+OrderId = OrderId
+};
+context.Warehouses.Add(ware);
+
+var boss = new Master{
+BillingId = BillCard.BillingId,
+OrderId = OrderId
+};
+
+
+
+context.Masters.Add(boss);
+
 
 await context.SaveChangesAsync();
 return Ok("Order Is Successful");

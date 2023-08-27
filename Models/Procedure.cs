@@ -30,12 +30,7 @@ namespace Hydot_Mall_Backend_v1.Models
       
     }
 
-    public class Billing{
-        public int Id { get; set;}
-        public string? BillingId {get; set;}
-        public string? Address {get; set;}
-        public string? OrderId {get; set;}
-    }
+
 
     public class Warehouse{
         public int Id { get; set;}
