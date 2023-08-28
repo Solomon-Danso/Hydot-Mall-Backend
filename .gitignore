@@ -395,6 +395,7 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
+wwwroot/
 
 # NVidia Nsight GPU debugger configuration file
 *.nvuser

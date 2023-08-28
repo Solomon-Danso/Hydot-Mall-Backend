@@ -257,7 +257,7 @@ if(!Password){
 manager.DeliveryStatus = constant.Delivered;
 await context.SaveChangesAsync();
 
-var info = context.Deliveries.Where(a=>a.DeliveryPersonId==ManagerId&&a.OrderId==OrderId).ToList();
+var info = context.Deliveries.FirstOrDefault(a=>a.DeliveryPersonId==ManagerId&&a.OrderId==OrderId);
 
 return Ok(info);
 

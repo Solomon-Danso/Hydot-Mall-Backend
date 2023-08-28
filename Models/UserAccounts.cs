@@ -51,7 +51,7 @@ namespace Hydot_Mall_Backend_v1.Models
         public DateTime? PasswordResetTokenExpiration { get; set; }
         public string? TwoFactorEnabledToken { get; set; }
         public DateTime? TwoFactorEnabledTokenExpire { get; set; }
-        public string? Role {get; set;}
+       
         
 
     }

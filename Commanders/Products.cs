@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Hydot_Mall_Backend_v1.Commanders
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Products")]
     public class Products : ControllerBase
     {
         private readonly DataContext context;
@@ -56,7 +56,7 @@ namespace Hydot_Mall_Backend_v1.Commanders
  }
 
     var product = new Product{
-        ProductImagePath =  Path.Combine("Products/Images", fileName),
+        ProductImagePath =  Path.Combine("/Products/Images", fileName),
         ProductId = IDGenerator(),
         ProductName = request.ProductName,
         ProductCategory = request.ProductCategory,
@@ -121,7 +121,7 @@ namespace Hydot_Mall_Backend_v1.Commanders
  }
 
    
-        pdt.ProductImagePath =  Path.Combine("Products/Images", fileName);
+        pdt.ProductImagePath =  Path.Combine("/Products/Images", fileName);
         pdt.ProductId = IDGenerator();
         pdt.ProductName = request.ProductName;
         pdt.ProductCategory = request.ProductCategory;
