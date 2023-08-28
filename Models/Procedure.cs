@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Net.Http.Headers;
 
 namespace Hydot_Mall_Backend_v1.Models
 {
@@ -64,15 +65,8 @@ namespace Hydot_Mall_Backend_v1.Models
         public int Id { get; set;}
         public string? OrderId { get; set; }
         public string? AccountId{ get; set; }
-        public string? IssuerId {get; set;}
-        public string? IssuerName {get; set;}
-        public string? IssuerEmail {get; set;}
-        public string? IssuerPhone {get; set;}
-        public string? IssuerRole {get; set;}
-        public string? CustomerName {get; set;}
-        public string? CustomerEmail {get; set;}
-        public string? CustomerPhone {get; set;}
         public double? ReceivableAmount {get; set; }
+        public string? Status {get; set; }
         public string? DateOfIssue {get; set;}
     }
 
@@ -86,11 +80,8 @@ public class DeliveryManager{
         public string? DeliveryPersonPhone { get; set;}
         public string? DeliveryPersonEmail { get; set; }
         public string? BillingId { get; set; }
-        public string? CustomerId { get; set; }
-        public string? CustomerName { get; set; }
-        public string? CustomerPhone { get; set; }
-        public string? CustomerEmail { get;set; }
-        public string? CustomerToken { get; set; }
+        public string? DeliveryId { get; set; }
+        public string? OneTimePassword{ get; set; }
         public string? IssuerId {get; set;}
         public string? IssuerName {get; set;}
         public string? IssuerEmail {get; set;}
@@ -98,6 +89,10 @@ public class DeliveryManager{
         public string? IssuerRole {get; set;}
         public string? IssuerComment {get; set;}
         public string? DateOfIssue {get; set;}
+        public string? DeliveryDate {get; set;}
+        public string? DeliveryMethod {get; set;}
+        public string? RecipientDetails {get; set;}
+        public double? OrderTotal  {get; set;}
 
     }
 
