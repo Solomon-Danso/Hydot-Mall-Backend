@@ -122,7 +122,7 @@ if (manager == null){
 var Order = context.DeliveryManagers.FirstOrDefault(t=>t.OrderId == OrderId);
 var Boss = context.Masters.FirstOrDefault(t=>t.OrderId == OrderId);
 var theStage = context.BillingCards.FirstOrDefault(t=>t.OrderId==OrderId);
-var deliPerson = context.StaffAccounts.FirstOrDefault(t=>t.StaffId ==DeliPersonId);
+var deliPerson = context.RoleTables.FirstOrDefault(t=>t.ManagerId ==DeliPersonId && t.Role ==constant.Delivery);
 var customer = context.OrderLists.FirstOrDefault(t=>t.OrderId==OrderId);
 
 
@@ -139,9 +139,8 @@ Order.IssuerPhone = manager.PhoneNumber;
 Order.IssuerRole = manager.Role;
 Order.IssuerComment = request.IssuerComment;
 Order.DateOfIssue = DateTime.Today.Date.ToString("dd MMMM, yyyy");
-Order.DeliveryPersonId = deliPerson.StaffId;
-Order.DeliveryPersonProfilePic = deliPerson.ProfilePicture;
-Order.DeliveryPersonName = deliPerson.FullName;
+Order.DeliveryPersonId = deliPerson.ManagerId;
+Order.DeliveryPersonName = deliPerson.ManagerName;
 Order.DeliveryPersonPhone = deliPerson.PhoneNumber;
 Order.DeliveryPersonEmail = deliPerson.Email;
 Order.OneTimePassword = BCrypt.Net.BCrypt.HashPassword(rawPassword);
@@ -154,12 +153,32 @@ Order.RecipientDetails = customer.UserName + " " + customer.UserPhone;
 
 
 Boss.DeliveryId = Order.DeliveryId;
+Boss.CustomerToken = rawPassword;
+Boss.DeliveryStatus = constant.NotDelivered;
+theStage.DeliveryStatus = constant.NotDelivered;
 theStage.DeliveryStage = constant.Completed;
 
-//var quali = new Quality{
-//    OrderId = Order.OrderId,
-//};
-//context.Qualities.Add(quali);
+var delivery = new Delivery{
+OrderId = Order.OrderId,
+DeliveryId = IDGenerator(),
+DeliveryStatus = constant.NotDelivered,
+DeliveryPersonId = deliPerson.ManagerId,
+DeliveryName = deliPerson.ManagerName,
+DeliveryEmail = deliPerson.Email,
+DeliveryPhone = deliPerson.PhoneNumber,
+CustomerId = customer.UserId,
+CustomerName = customer.UserName,
+CustomerEmail = customer.UserEmail,
+CustomerPhone = customer.UserPhone,
+BillingId = Boss.BillingId,
+OneTimePassword = Order.OneTimePassword,
+DeliveryDate = Order.DeliveryDate,
+DeliveryMethod = Order.DeliveryMethod,
+DateOfIssue = DateTime.Today.Date.ToString("dd MMMM, yyyy")
+};
+
+context.Deliveries.Add(delivery);
+
 await context.SaveChangesAsync();
 
 var c = context.BillingCards.FirstOrDefault(x=>x.OrderId == Order.OrderId);
@@ -194,7 +213,7 @@ if (c == null){
   StringBuilder itemsList = new StringBuilder();
 foreach (var item in items)
 {
-    // Modify this line to include an HTML <img> tag with the image URL
+
     itemsList.AppendLine($"<img src='{item.ProductImagePath}' alt='{item.ProductName} Image' style='max-width: 200px;'>  {item.ProductName} - {item.Quantity} items");
 }
     string recipientDetails = $"{customer.UserName}, {customer.UserEmail}, {customer.UserPhone}";
@@ -221,9 +240,31 @@ catch (Exception)
 
 
 
-return Ok("Warehouse Steps Completed");
+return Ok("All Steps Completed");
 
 }
+
+[HttpPost("Delivery")]
+public async Task<IActionResult> DeliveryInfo(string password, string ManagerId, string OrderId){
+var manager = context.Deliveries.FirstOrDefault(a=>a.DeliveryPersonId == ManagerId&&a.OrderId==OrderId);
+if (manager == null){
+    return BadRequest("You dont have permission to deliver this Order");
+}
+bool Password =  BCrypt.Net.BCrypt.Verify(password, manager.OneTimePassword);
+if(!Password){
+    return BadRequest("Password Is Incorrect");
+}
+manager.DeliveryStatus = constant.Delivered;
+await context.SaveChangesAsync();
+
+var info = context.Deliveries.Where(a=>a.DeliveryPersonId==ManagerId&&a.OrderId==OrderId).ToList();
+
+return Ok(info);
+
+
+
+}
+
 
 
 

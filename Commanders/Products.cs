@@ -264,7 +264,9 @@ context.Warehouses.Add(ware);
 
 var boss = new Master{
 BillingId = BillCard.BillingId,
-OrderId = OrderId
+OrderId = OrderId,
+MasterId = IDGenerator(),
+UserId = regUser.UserId
 };
 
 

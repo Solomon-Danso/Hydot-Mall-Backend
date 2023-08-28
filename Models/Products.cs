@@ -44,7 +44,6 @@ public class BillingCard{
     public string? WarehouseStage { get; set; }
     public string? QualityStage { get; set;}
     public string? AccountsStage { get; set; }
-    public string? SecurityStage { get; set; }
     public string? DeliveryStage { get; set; }
     public string? DeliveryStatus { get; set; }
 
