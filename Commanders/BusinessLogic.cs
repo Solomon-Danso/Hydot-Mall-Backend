@@ -129,7 +129,8 @@ var customer = context.OrderLists.FirstOrDefault(t=>t.OrderId==OrderId);
 if (Order == null || Boss == null || theStage == null|| deliPerson == null|| customer == null){
     return BadRequest("No order found");
 }
- 
+ var rawPassword = IDGenerator();
+
 Order.DeliveryId = IDGenerator();
 Order.IssuerId = manager.ManagerId;
 Order.IssuerName = manager.ManagerName;
@@ -143,7 +144,7 @@ Order.DeliveryPersonProfilePic = deliPerson.ProfilePicture;
 Order.DeliveryPersonName = deliPerson.FullName;
 Order.DeliveryPersonPhone = deliPerson.PhoneNumber;
 Order.DeliveryPersonEmail = deliPerson.Email;
-Order.OneTimePassword = IDGenerator();
+Order.OneTimePassword = BCrypt.Net.BCrypt.HashPassword(rawPassword);
 Order.BillingId = Boss.BillingId;
 Order.DeliveryDate = request.DeliveryDate;
 Order.DeliveryMethod = constant.DeliveryMethod;
@@ -155,10 +156,10 @@ Order.RecipientDetails = customer.UserName + " " + customer.UserPhone;
 Boss.DeliveryId = Order.DeliveryId;
 theStage.DeliveryStage = constant.Completed;
 
-var quali = new Quality{
-    OrderId = Order.OrderId,
-};
-context.Qualities.Add(quali);
+//var quali = new Quality{
+//    OrderId = Order.OrderId,
+//};
+//context.Qualities.Add(quali);
 await context.SaveChangesAsync();
 
 var c = context.BillingCards.FirstOrDefault(x=>x.OrderId == Order.OrderId);
@@ -190,15 +191,12 @@ if (c == null){
     }
 
 
-    // Assuming you have a list of items with their details
-    // Create a formatted list of items
-
-    StringBuilder itemsList = new StringBuilder();
-    foreach (var item in items)
-    {
-        itemsList.AppendLine($"{item.ProductName} - {item.Quantity} items");
-    }
-
+  StringBuilder itemsList = new StringBuilder();
+foreach (var item in items)
+{
+    // Modify this line to include an HTML <img> tag with the image URL
+    itemsList.AppendLine($"<img src='{item.ProductImagePath}' alt='{item.ProductName} Image' style='max-width: 200px;'>  {item.ProductName} - {item.Quantity} items");
+}
     string recipientDetails = $"{customer.UserName}, {customer.UserEmail}, {customer.UserPhone}";
 
     await SendOrderConfirmationEmail(
@@ -210,7 +208,8 @@ if (c == null){
         recipientDetails,
         c.Location,
         itemsList.ToString(),
-       total
+       total,
+       Order.OneTimePassword
         
 
     );
@@ -230,7 +229,7 @@ return Ok("Warehouse Steps Completed");
 
 
 
-private async Task SendOrderConfirmationEmail(string customerName, string email, string orderNumber, string deliveryDate, string deliveryMethod, string recipientDetails, string deliveryAddress, string theItem, double totalPrice)
+private async Task SendOrderConfirmationEmail(string customerName, string email, string orderNumber, string deliveryDate, string deliveryMethod, string recipientDetails, string deliveryAddress, string theItem, double totalPrice, string OneTimePassword)
 {
     string subject = "Order Confirmation";
     string body = $@"<!DOCTYPE html>
@@ -305,6 +304,7 @@ private async Task SendOrderConfirmationEmail(string customerName, string email,
             <div class='text'>{theItem}</div>
             <div class='text'>Total price: {totalPrice}</div>
         </div>
+        <div class='text'>Your One Time Password is <b>{OneTimePassword}</b> Dont share this code with anyone, unless you are recieving your order</div>
         <div class='text'>Please note:</div>
         <div class='text'>You can track your order through your account.</div>
         <div class='text'>If you have any questions, please visit our Help Center.</div>
